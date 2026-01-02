@@ -53,7 +53,7 @@ Screenshot of the quiz app showing the main menu with quiz topic selection.
 
 ### Links
 
-- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/frontend-quiz-app-react-typescript-vite-styled-components)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/frontend-quiz-app-with-react-and-typescript-40M7CZEUO5)
 - Live Site URL: [View Live Demo](https://QS3H.github.io/Frontend-Quiz-app-with-React-and-TypeScript/)
 
 ## My process
