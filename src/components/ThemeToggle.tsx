@@ -94,8 +94,8 @@ function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
       <ThemeIcon
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/assets/images/icon-sun-light.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/assets/images/icon-sun-dark.svg"
+            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/icon-sun-light.svg"
+            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/icon-sun-dark.svg"
         }
         alt="Light mode"
       />
@@ -112,8 +112,8 @@ function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
       <ThemeIcon
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/assets/images/icon-moon-light.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/assets/images/icon-moon-dark.svg"
+            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/icon-moon-light.svg"
+            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/icon-moon-dark.svg"
         }
         alt="Dark mode"
       />
