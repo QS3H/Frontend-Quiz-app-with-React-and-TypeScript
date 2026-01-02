@@ -2,7 +2,7 @@
   "name": "frontend-quiz-app",
   "version": "1.0.0",
   "description": "![Design preview for the Frontend quiz app coding challenge](./preview.jpg)",
-  "homepage": "https://QS3H.github.io/Frontend-Quiz-app-with-React-and-TypeScript",
+  "homepage": "https://QS3H.github.io/Frontend-Quiz-app-with-React-and-TypeScript/",
   "main": "index.js",
   "type": "module",
   "scripts": {

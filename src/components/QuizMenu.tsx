@@ -306,8 +306,12 @@ function QuizMenu({
       <BackgroundImage
         src={
           isDark
-            ? "/assets/images/pattern-background-desktop-dark.svg"
-            : "/assets/images/pattern-background-desktop-light.svg"
+            ? `${
+                import.meta.env.BASE_URL
+              }assets/images/pattern-background-desktop-dark.svg`
+            : `${
+                import.meta.env.BASE_URL
+              }assets/images/pattern-background-desktop-light.svg`
         }
         alt=""
         $display="desktop"
@@ -317,8 +321,12 @@ function QuizMenu({
       <BackgroundImage
         src={
           isDark
-            ? "/assets/images/pattern-background-tablet-dark.svg"
-            : "/assets/images/pattern-background-tablet-light.svg"
+            ? `${
+                import.meta.env.BASE_URL
+              }assets/images/pattern-background-tablet-dark.svg`
+            : `${
+                import.meta.env.BASE_URL
+              }assets/images/pattern-background-tablet-light.svg`
         }
         alt=""
         $display="tablet"
@@ -328,8 +336,12 @@ function QuizMenu({
       <BackgroundImage
         src={
           isDark
-            ? "/assets/images/pattern-background-mobile-dark.svg"
-            : "/assets/images/pattern-background-mobile-light.svg"
+            ? `${
+                import.meta.env.BASE_URL
+              }assets/images/pattern-background-mobile-dark.svg`
+            : `${
+                import.meta.env.BASE_URL
+              }assets/images/pattern-background-mobile-light.svg`
         }
         alt=""
         $display="mobile"

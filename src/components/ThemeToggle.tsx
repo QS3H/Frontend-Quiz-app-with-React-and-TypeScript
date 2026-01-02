@@ -94,8 +94,8 @@ function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
       <ThemeIcon
         src={
           isDark
-            ? "/assets/images/icon-sun-light.svg"
-            : "/assets/images/icon-sun-dark.svg"
+            ? `${import.meta.env.BASE_URL}assets/images/icon-sun-light.svg`
+            : `${import.meta.env.BASE_URL}assets/images/icon-sun-dark.svg`
         }
         alt="Light mode"
       />
@@ -112,8 +112,8 @@ function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
       <ThemeIcon
         src={
           isDark
-            ? "/assets/images/icon-moon-light.svg"
-            : "/assets/images/icon-moon-dark.svg"
+            ? `${import.meta.env.BASE_URL}assets/images/icon-moon-light.svg`
+            : `${import.meta.env.BASE_URL}assets/images/icon-moon-dark.svg`
         }
         alt="Dark mode"
       />

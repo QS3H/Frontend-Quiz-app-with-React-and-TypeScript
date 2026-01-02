@@ -70,7 +70,10 @@ function ResultsScreen({
       <ContentContainer>
         <Header>
           <BackButton $isDark={isDark} onClick={onBackToMenu}>
-            <BackIcon src="/assets/images/icon-back.svg" alt="Back" />
+            <BackIcon
+              src={`${import.meta.env.BASE_URL}assets/images/icon-back.svg`}
+              alt="Back"
+            />
             Back
           </BackButton>
         </Header>

@@ -382,8 +382,8 @@ function QuestionScreen({
       <BackgroundImage
         src={
           isDark
-            ? "/assets/images/pattern-background-desktop-dark.svg"
-            : "/assets/images/pattern-background-desktop-light.svg"
+            ? `${import.meta.env.BASE_URL}assets/images/pattern-background-desktop-dark.svg`
+            : `${import.meta.env.BASE_URL}assets/images/pattern-background-desktop-light.svg`
         }
         alt=""
         $display="desktop"
@@ -393,8 +393,8 @@ function QuestionScreen({
       <BackgroundImage
         src={
           isDark
-            ? "/assets/images/pattern-background-tablet-dark.svg"
-            : "/assets/images/pattern-background-tablet-light.svg"
+            ? `${import.meta.env.BASE_URL}assets/images/pattern-background-tablet-dark.svg`
+            : `${import.meta.env.BASE_URL}assets/images/pattern-background-tablet-light.svg`
         }
         alt=""
         $display="tablet"
@@ -404,8 +404,8 @@ function QuestionScreen({
       <BackgroundImage
         src={
           isDark
-            ? "/assets/images/pattern-background-mobile-dark.svg"
-            : "/assets/images/pattern-background-mobile-light.svg"
+            ? `${import.meta.env.BASE_URL}assets/images/pattern-background-mobile-dark.svg`
+            : `${import.meta.env.BASE_URL}assets/images/pattern-background-mobile-light.svg`
         }
         alt=""
         $display="mobile"
@@ -414,7 +414,7 @@ function QuestionScreen({
       <ContentContainer>
         <Header>
           <BackButton $isDark={isDark} onClick={onBackToMenu}>
-            <BackIcon src="/assets/images/icon-back.svg" alt="Back" />
+            <BackIcon src={`${import.meta.env.BASE_URL}assets/images/icon-back.svg`} alt="Back" />
             Back
           </BackButton>
         </Header>
