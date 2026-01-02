@@ -1,0 +1,64 @@
+/**
+ * Global Styles and Font Definitions
+ *
+ * This CSS file contains global styles, font loading, and base resets
+ * for the Frontend Quiz App. Uses the Rubik font family for consistent
+ * typography throughout the application.
+ */
+
+/* Font Loading - Rubik Variable Font */
+/* Supports font weights from 100-900 for optimal performance */
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/fonts/Rubik-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("../assets/fonts/Rubik-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+}
+
+/* CSS Reset and Base Styles */
+/* Ensures consistent rendering across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Full Height Layout */
+/* Required for proper full-screen app layout */
+html,
+body {
+  height: 100%;
+}
+
+/* Body Styles */
+/* Sets default font and improves text rendering */
+body {
+  font-family: "Rubik", sans-serif;
+  min-height: 100vh;
+  /* Improved font rendering on webkit browsers */
+  -webkit-font-smoothing: antialiased;
+  /* Improved font rendering on Firefox */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* React Root Container */
+/* Ensures the React app takes full viewport height */
+#root {
+  min-height: 100vh;
+  height: 100%;
+}
+
+/* App Container */
+/* Main app wrapper for consistent layout */
+.app {
+  min-height: 100vh;
+  height: 100%;
+}
