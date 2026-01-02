@@ -373,10 +373,7 @@ function QuizMenu({
                   $isDark={isDark}
                 >
                   <IconContainer $bgColor={getIconBgColor(quiz.title)}>
-                    <Icon
-                      src={`${import.meta.env.BASE_URL}${quiz.icon}`}
-                      alt={`${quiz.title} icon`}
-                    />
+                    <Icon src={quiz.icon} alt={`${quiz.title} icon`} />
                   </IconContainer>
                   <QuizTitle $isDark={isDark}>{quiz.title}</QuizTitle>
                 </QuizButton>
