@@ -210,10 +210,6 @@ npm run preview
 npm run deploy
 ```
 
-Your app will be live at: `https://QS3H.github.io/Frontend-Quiz-app-with-React-and-TypeScript/`
-
-**Note:** The configuration has been set up for your GitHub repository. If you change the repository name, update the `homepage` field in `package.json` and the base path in `vite.config.ts`.
-
 ## Author
 
 - Frontend Mentor - [@QS3H](https://www.frontendmentor.io/profile/QS3H)
