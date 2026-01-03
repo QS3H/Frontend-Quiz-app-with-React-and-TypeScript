@@ -18,6 +18,14 @@ import styled from "styled-components";
 import { Quiz } from "../types";
 import ThemeToggle from "./ThemeToggle";
 
+// Import background images
+const bgDesktopDark = new URL("/images/pattern-background-desktop-dark.svg", import.meta.url).href;
+const bgDesktopLight = new URL("/images/pattern-background-desktop-light.svg", import.meta.url).href;
+const bgTabletDark = new URL("/images/pattern-background-tablet-dark.svg", import.meta.url).href;
+const bgTabletLight = new URL("/images/pattern-background-tablet-light.svg", import.meta.url).href;
+const bgMobileDark = new URL("/images/pattern-background-mobile-dark.svg", import.meta.url).href;
+const bgMobileLight = new URL("/images/pattern-background-mobile-light.svg", import.meta.url).href;
+
 /**
  * Props for the QuizMenu component
  */
@@ -304,33 +312,21 @@ function QuizMenu({
     <Container $isDark={isDark}>
       {/* Background Pattern - Desktop */}
       <BackgroundImage
-        src={
-          isDark
-            ? "/images/pattern-background-desktop-dark.svg"
-            : "/images/pattern-background-desktop-light.svg"
-        }
+        src={isDark ? bgDesktopDark : bgDesktopLight}
         alt=""
         $display="desktop"
       />
 
       {/* Background Pattern - Tablet */}
       <BackgroundImage
-        src={
-          isDark
-            ? "/images/pattern-background-tablet-dark.svg"
-            : "/images/pattern-background-tablet-light.svg"
-        }
+        src={isDark ? bgTabletDark : bgTabletLight}
         alt=""
         $display="tablet"
       />
 
       {/* Background Pattern - Mobile */}
       <BackgroundImage
-        src={
-          isDark
-            ? "/images/pattern-background-mobile-dark.svg"
-            : "/images/pattern-background-mobile-light.svg"
-        }
+        src={isDark ? bgMobileDark : bgMobileLight}
         alt=""
         $display="mobile"
       />

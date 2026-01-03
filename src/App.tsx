@@ -16,9 +16,18 @@
 import QuizMenu from "./components/QuizMenu";
 import QuestionScreen from "./components/QuestionScreen";
 import ResultsScreen from "./components/ResultsScreen";
-import quizData from "../data.json";
-import { Quiz, QuizState } from "./types";
+import quizDataRaw from "../data.json";
+import { Quiz, QuizState, QuizData } from "./types";
 import useLocalStorage from "./hooks/useLocalStorage";
+import { quizIcons } from "./assets/images";
+
+// Process quiz data to replace icon paths with imported assets
+const quizData: QuizData = {
+  quizzes: quizDataRaw.quizzes.map(quiz => ({
+    ...quiz,
+    icon: quizIcons[quiz.title as keyof typeof quizIcons]
+  }))
+};
 
 /**
  * Main application component that orchestrates the quiz experience

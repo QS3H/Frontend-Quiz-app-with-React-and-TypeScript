@@ -14,6 +14,12 @@
 
 import styled from "styled-components";
 
+// Import theme icons
+const sunLight = new URL("/images/icon-sun-light.svg", import.meta.url).href;
+const sunDark = new URL("/images/icon-sun-dark.svg", import.meta.url).href;
+const moonLight = new URL("/images/icon-moon-light.svg", import.meta.url).href;
+const moonDark = new URL("/images/icon-moon-dark.svg", import.meta.url).href;
+
 /**
  * Props for the ThemeToggle component
  */
@@ -92,11 +98,7 @@ function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
   return (
     <Container>
       <ThemeIcon
-        src={
-          isDark
-            ? "/images/icon-sun-light.svg"
-            : "/images/icon-sun-dark.svg"
-        }
+        src={isDark ? sunLight : sunDark}
         alt="Light mode"
       />
 
@@ -110,11 +112,7 @@ function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
       </ToggleButton>
 
       <ThemeIcon
-        src={
-          isDark
-            ? "/images/icon-moon-light.svg"
-            : "/images/icon-moon-dark.svg"
-        }
+        src={isDark ? moonLight : moonDark}
         alt="Dark mode"
       />
     </Container>
