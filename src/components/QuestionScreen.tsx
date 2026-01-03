@@ -16,6 +16,17 @@
 import styled from "styled-components";
 import { Question } from "../types";
 
+// Asset paths
+const isProduction = import.meta.env.PROD;
+const basePath = isProduction ? "/Frontend-Quiz-app-with-React-and-TypeScript" : "";
+const bgDesktopDark = `${basePath}/images/pattern-background-desktop-dark.svg`;
+const bgDesktopLight = `${basePath}/images/pattern-background-desktop-light.svg`;
+const bgTabletDark = `${basePath}/images/pattern-background-tablet-dark.svg`;
+const bgTabletLight = `${basePath}/images/pattern-background-tablet-light.svg`;
+const bgMobileDark = `${basePath}/images/pattern-background-mobile-dark.svg`;
+const bgMobileLight = `${basePath}/images/pattern-background-mobile-light.svg`;
+const iconBack = `${basePath}/images/icon-back.svg`;
+
 /**
  * Props for the QuestionScreen component
  */
@@ -425,33 +436,21 @@ function QuestionScreen({
     <Container $isDark={isDark}>
       {/* Background Pattern - Desktop */}
       <BackgroundImage
-        src={
-          isDark
-            ? "/images/pattern-background-desktop-dark.svg"
-            : "/images/pattern-background-desktop-light.svg"
-        }
+        src={isDark ? bgDesktopDark : bgDesktopLight}
         alt=""
         $display="desktop"
       />
 
       {/* Background Pattern - Tablet */}
       <BackgroundImage
-        src={
-          isDark
-            ? "/images/pattern-background-tablet-dark.svg"
-            : "/images/pattern-background-tablet-light.svg"
-        }
+        src={isDark ? bgTabletDark : bgTabletLight}
         alt=""
         $display="tablet"
       />
 
       {/* Background Pattern - Mobile */}
       <BackgroundImage
-        src={
-          isDark
-            ? "/images/pattern-background-mobile-dark.svg"
-            : "/images/pattern-background-mobile-light.svg"
-        }
+        src={isDark ? bgMobileDark : bgMobileLight}
         alt=""
         $display="mobile"
       />
@@ -459,7 +458,7 @@ function QuestionScreen({
       <ContentContainer>
         <Header>
           <BackButton $isDark={isDark} onClick={onBackToMenu}>
-            <BackIcon src="/images/icon-back.svg" alt="Back" />
+            <BackIcon src={iconBack} alt="Back" />
             Back
           </BackButton>
         </Header>

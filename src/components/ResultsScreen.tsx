@@ -16,6 +16,11 @@
 import styled from "styled-components";
 import { Quiz } from "../types";
 
+// Asset paths
+const isProduction = import.meta.env.PROD;
+const basePath = isProduction ? "/Frontend-Quiz-app-with-React-and-TypeScript" : "";
+const iconBack = `${basePath}/images/icon-back.svg`;
+
 /**
  * Props for the ResultsScreen component
  */
@@ -70,10 +75,7 @@ function ResultsScreen({
       <ContentContainer>
         <Header>
           <BackButton $isDark={isDark} onClick={onBackToMenu}>
-            <BackIcon
-              src="/images/icon-back.svg"
-              alt="Back"
-            />
+            <BackIcon src={iconBack} alt="Back" />
             Back
           </BackButton>
         </Header>

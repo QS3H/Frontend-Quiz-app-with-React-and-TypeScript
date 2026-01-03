@@ -18,13 +18,15 @@ import styled from "styled-components";
 import { Quiz } from "../types";
 import ThemeToggle from "./ThemeToggle";
 
-// Import background images
-const bgDesktopDark = new URL("/images/pattern-background-desktop-dark.svg", import.meta.url).href;
-const bgDesktopLight = new URL("/images/pattern-background-desktop-light.svg", import.meta.url).href;
-const bgTabletDark = new URL("/images/pattern-background-tablet-dark.svg", import.meta.url).href;
-const bgTabletLight = new URL("/images/pattern-background-tablet-light.svg", import.meta.url).href;
-const bgMobileDark = new URL("/images/pattern-background-mobile-dark.svg", import.meta.url).href;
-const bgMobileLight = new URL("/images/pattern-background-mobile-light.svg", import.meta.url).href;
+// Background images
+const isProduction = import.meta.env.PROD;
+const basePath = isProduction ? "/Frontend-Quiz-app-with-React-and-TypeScript" : "";
+const bgDesktopDark = `${basePath}/images/pattern-background-desktop-dark.svg`;
+const bgDesktopLight = `${basePath}/images/pattern-background-desktop-light.svg`;
+const bgTabletDark = `${basePath}/images/pattern-background-tablet-dark.svg`;
+const bgTabletLight = `${basePath}/images/pattern-background-tablet-light.svg`;
+const bgMobileDark = `${basePath}/images/pattern-background-mobile-dark.svg`;
+const bgMobileLight = `${basePath}/images/pattern-background-mobile-light.svg`;
 
 /**
  * Props for the QuizMenu component

@@ -14,11 +14,13 @@
 
 import styled from "styled-components";
 
-// Import theme icons
-const sunLight = new URL("/images/icon-sun-light.svg", import.meta.url).href;
-const sunDark = new URL("/images/icon-sun-dark.svg", import.meta.url).href;
-const moonLight = new URL("/images/icon-moon-light.svg", import.meta.url).href;
-const moonDark = new URL("/images/icon-moon-dark.svg", import.meta.url).href;
+// Theme icons
+const isProduction = import.meta.env.PROD;
+const basePath = isProduction ? "/Frontend-Quiz-app-with-React-and-TypeScript" : "";
+const sunLight = `${basePath}/images/icon-sun-light.svg`;
+const sunDark = `${basePath}/images/icon-sun-dark.svg`;
+const moonLight = `${basePath}/images/icon-moon-light.svg`;
+const moonDark = `${basePath}/images/icon-moon-dark.svg`;
 
 /**
  * Props for the ThemeToggle component
