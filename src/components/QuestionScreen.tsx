@@ -40,6 +40,8 @@ interface QuestionScreenProps {
   isLastQuestion: boolean;
   /** Callback to return to main menu */
   onBackToMenu: () => void;
+  /** Whether to show answer feedback (correct/incorrect) */
+  showFeedback?: boolean;
 }
 
 /**
@@ -249,32 +251,54 @@ const OptionButton = styled.button<{
   $isDark: boolean;
   $isSelected: boolean;
   $isCorrect?: boolean;
+  $showFeedback?: boolean;
 }>`
   width: 100%;
   background-color: ${(props) => {
+    if (props.$showFeedback) {
+      if (props.$isCorrect && props.$isSelected) return "#26D782"; // Green for correct selected
+      if (!props.$isCorrect && props.$isSelected) return "#EE5454"; // Red for incorrect selected
+      if (props.$isCorrect && !props.$isSelected) return "#26D782"; // Green for correct unselected (when showing feedback)
+      return props.$isDark ? "#3B4D66" : "#F4F6FA"; // Default for incorrect unselected
+    }
     if (props.$isSelected) return "#a729f5";
     return props.$isDark ? "#3B4D66" : "#F4F6FA";
   }};
   color: ${(props) => {
+    if (props.$showFeedback && (props.$isCorrect || (props.$isSelected && !props.$isCorrect))) return "#FFFFFF";
     if (props.$isSelected) return "#FFFFFF";
     return props.$isDark ? "#FFFFFF" : "#313E51";
   }};
   border: 2px solid
-    ${(props) => (props.$isSelected ? "#a729f5" : "transparent")};
+    ${(props) => {
+      if (props.$showFeedback) {
+        if (props.$isCorrect) return "#26D782"; // Green border for correct
+        if (props.$isSelected && !props.$isCorrect) return "#EE5454"; // Red border for incorrect selected
+        return "transparent";
+      }
+      return props.$isSelected ? "#a729f5" : "transparent";
+    }};
   border-radius: 12px;
   padding: 12px 16px;
   display: flex;
   align-items: center;
   gap: 16px;
-  cursor: pointer;
+  cursor: ${(props) => (props.$showFeedback ? "default" : "pointer")};
   transition: all 0.2s ease;
   text-align: left;
   font-size: 18px;
+  opacity: ${(props) => (props.$showFeedback && !props.$isCorrect && !props.$isSelected ? 0.5 : 1)};
 
   &:hover {
-    background-color: ${(props) =>
-      props.$isSelected ? "#a729f5" : props.$isDark ? "#43475A" : "#E5E7EB"};
-    border-color: ${(props) => (props.$isSelected ? "#a729f5" : "transparent")};
+    background-color: ${(props) => {
+      if (props.$showFeedback) return;
+      if (props.$isSelected) return "#a729f5";
+      return props.$isDark ? "#43475A" : "#E5E7EB";
+    }};
+    border-color: ${(props) => {
+      if (props.$showFeedback) return;
+      return props.$isSelected ? "#a729f5" : "transparent";
+    }};
   }
 
   &:focus {
@@ -296,6 +320,26 @@ const OptionLetter = styled.span`
 
   @media (min-width: 768px) {
     min-width: 40px;
+  }
+`;
+
+const FeedbackIcon = styled.div<{ $isCorrect: boolean }>`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => (props.$isCorrect ? "#26D782" : "#EE5454")};
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 `;
 
@@ -373,6 +417,7 @@ function QuestionScreen({
   isDark,
   isLastQuestion,
   onBackToMenu,
+  showFeedback = false,
 }: QuestionScreenProps) {
   const progress = ((questionNumber - 1) / totalQuestions) * 100;
 
@@ -382,8 +427,8 @@ function QuestionScreen({
       <BackgroundImage
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-desktop-dark.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-desktop-light.svg"
+            ? "/images/pattern-background-desktop-dark.svg"
+            : "/images/pattern-background-desktop-light.svg"
         }
         alt=""
         $display="desktop"
@@ -393,8 +438,8 @@ function QuestionScreen({
       <BackgroundImage
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-tablet-dark.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-tablet-light.svg"
+            ? "/images/pattern-background-tablet-dark.svg"
+            : "/images/pattern-background-tablet-light.svg"
         }
         alt=""
         $display="tablet"
@@ -404,8 +449,8 @@ function QuestionScreen({
       <BackgroundImage
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-mobile-dark.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-mobile-light.svg"
+            ? "/images/pattern-background-mobile-dark.svg"
+            : "/images/pattern-background-mobile-light.svg"
         }
         alt=""
         $display="mobile"
@@ -414,7 +459,7 @@ function QuestionScreen({
       <ContentContainer>
         <Header>
           <BackButton $isDark={isDark} onClick={onBackToMenu}>
-            <BackIcon src="/Frontend-Quiz-app-with-React-and-TypeScript/images/icon-back.svg" alt="Back" />
+            <BackIcon src="/images/icon-back.svg" alt="Back" />
             Back
           </BackButton>
         </Header>
@@ -432,18 +477,29 @@ function QuestionScreen({
             <QuestionText $isDark={isDark}>{question.question}</QuestionText>
 
             <OptionsList>
-              {question.options.map((option, index) => (
-                <OptionButton
-                  key={option}
-                  $isDark={isDark}
-                  $isSelected={selectedAnswer === option}
-                  onClick={() => onAnswerSelect(option)}
-                  type="button"
-                >
-                  <OptionLetter>{getOptionLetter(index)}</OptionLetter>
-                  {option}
-                </OptionButton>
-              ))}
+              {question.options.map((option, index) => {
+                const isCorrect = option === question.answer;
+                const isSelected = selectedAnswer === option;
+                return (
+                  <OptionButton
+                    key={option}
+                    $isDark={isDark}
+                    $isSelected={isSelected}
+                    $isCorrect={isCorrect}
+                    $showFeedback={showFeedback}
+                    onClick={() => !showFeedback && onAnswerSelect(option)}
+                    type="button"
+                  >
+                    <OptionLetter>{getOptionLetter(index)}</OptionLetter>
+                    {option}
+                    {showFeedback && (isSelected || isCorrect) && (
+                      <FeedbackIcon $isCorrect={isCorrect}>
+                        {isCorrect ? "✓" : "✗"}
+                      </FeedbackIcon>
+                    )}
+                  </OptionButton>
+                );
+              })}
             </OptionsList>
           </QuestionCard>
 

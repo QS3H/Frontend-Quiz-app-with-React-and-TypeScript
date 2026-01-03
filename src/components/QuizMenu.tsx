@@ -306,8 +306,8 @@ function QuizMenu({
       <BackgroundImage
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-desktop-dark.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-desktop-light.svg"
+            ? "/images/pattern-background-desktop-dark.svg"
+            : "/images/pattern-background-desktop-light.svg"
         }
         alt=""
         $display="desktop"
@@ -317,8 +317,8 @@ function QuizMenu({
       <BackgroundImage
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-tablet-dark.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-tablet-light.svg"
+            ? "/images/pattern-background-tablet-dark.svg"
+            : "/images/pattern-background-tablet-light.svg"
         }
         alt=""
         $display="tablet"
@@ -328,8 +328,8 @@ function QuizMenu({
       <BackgroundImage
         src={
           isDark
-            ? "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-mobile-dark.svg"
-            : "/Frontend-Quiz-app-with-React-and-TypeScript/images/pattern-background-mobile-light.svg"
+            ? "/images/pattern-background-mobile-dark.svg"
+            : "/images/pattern-background-mobile-light.svg"
         }
         alt=""
         $display="mobile"

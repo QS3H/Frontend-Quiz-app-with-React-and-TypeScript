@@ -45,6 +45,10 @@ function App() {
     "quiz-user-answers",
     []
   );
+  const [showFeedback, setShowFeedback] = useLocalStorage<boolean>(
+    "quiz-show-feedback",
+    false
+  );
 
   /**
    * Handles quiz selection from the menu
@@ -56,6 +60,7 @@ function App() {
     setCurrentQuestionIndex(0);
     setSelectedAnswers(new Array(quiz.questions.length).fill(""));
     setUserAnswers([]);
+    setShowFeedback(false);
     setCurrentState("question");
   };
 
@@ -73,12 +78,16 @@ function App() {
   /**
    * Handles navigation to next question or completion
    * If on last question, submits quiz and shows results
-   * Otherwise, moves to next question
+   * Otherwise, shows feedback and moves to next question
    */
   const handleNext = () => {
     if (currentQuestionIndex < (selectedQuiz?.questions.length || 0) - 1) {
-      // Move to next question
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      // Show feedback for current question, then move to next question after a delay
+      setShowFeedback(true);
+      setTimeout(() => {
+        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setShowFeedback(false);
+      }, 1500); // Show feedback for 1.5 seconds
     } else {
       // Quiz completed - save final answers and show results
       setUserAnswers([...selectedAnswers]);
@@ -106,6 +115,7 @@ function App() {
     setCurrentQuestionIndex(0);
     setSelectedAnswers([]);
     setUserAnswers([]);
+    setShowFeedback(false);
   };
 
   /**
@@ -144,6 +154,7 @@ function App() {
           isLastQuestion={
             currentQuestionIndex === selectedQuiz.questions.length - 1
           }
+          showFeedback={showFeedback}
         />
       )}
 

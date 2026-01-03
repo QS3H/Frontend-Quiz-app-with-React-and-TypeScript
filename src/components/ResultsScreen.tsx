@@ -71,7 +71,7 @@ function ResultsScreen({
         <Header>
           <BackButton $isDark={isDark} onClick={onBackToMenu}>
             <BackIcon
-              src="/Frontend-Quiz-app-with-React-and-TypeScript/images/icon-back.svg"
+              src="/images/icon-back.svg"
               alt="Back"
             />
             Back
