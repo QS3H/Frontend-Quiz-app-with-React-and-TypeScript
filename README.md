@@ -16,7 +16,7 @@ This is my solution to the [Frontend quiz app challenge on Frontend Mentor](http
 
 ## Overview
 
-This is a fully functional quiz application built with React, TypeScript, and Styled Components. Users can test their knowledge across four different topics: HTML, CSS, JavaScript, and Accessibility.
+This is a fully functional quiz application built with React 19, TypeScript, and Styled Components. Users can test their knowledge across four different topics: HTML, CSS, JavaScript, and Accessibility, with **instant visual feedback** to enhance the learning experience.
 
 ### Features
 
@@ -24,6 +24,7 @@ This is a fully functional quiz application built with React, TypeScript, and St
 
 - Select a quiz subject from four available topics
 - Answer multiple-choice questions (4 options each)
+- **Instant visual feedback** - See correct/incorrect answers with color-coded indicators and checkmarks/X marks
 - Navigate between questions with Previous/Next buttons
 - View final score and percentage upon completion
 - Play again or choose a different subject
@@ -36,6 +37,7 @@ This is a fully functional quiz application built with React, TypeScript, and St
 - Keyboard navigation support
 - Progress indicator showing current question
 - Clean, modern UI matching the design specifications
+- **Enhanced learning experience** with immediate answer feedback
 
 ✅ **Technical Implementation:**
 
@@ -49,7 +51,7 @@ This is a fully functional quiz application built with React, TypeScript, and St
 
 ![](./preview.jpg)
 
-Screenshot of the quiz app showing the main menu with quiz topic selection.
+Screenshot of the quiz app showing the main menu with quiz topic selection and instant answer feedback functionality.
 
 ### Links
 
@@ -60,10 +62,10 @@ Screenshot of the quiz app showing the main menu with quiz topic selection.
 
 ### Built with
 
-- [React](https://reactjs.org/) - JS library with hooks for state management
+- [React 19](https://reactjs.org/) - JS library with hooks for state management
 - [TypeScript](https://www.typescriptlang.org/) - For type safety and better developer experience
 - [Vite](https://vitejs.dev/) - Build tool and development server
-- [Styled Components](https://styled-components.com/) - For component-scoped CSS-in-JS styling
+- [Styled Components](https://styled-components.com/) - For component-scoped CSS-in-JS styling with conditional theming
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox and CSS Grid
@@ -98,6 +100,18 @@ Building this quiz app was an excellent opportunity to practice React fundamenta
 - Using union types for state management (QuizState: 'menu' | 'question' | 'result')
 - Type-safe event handling and state updates
 
+**Advanced State Management:**
+
+- Implementing timed visual feedback with `setTimeout` for user experience
+- Managing complex component states with multiple boolean flags
+- Coordinating state changes across navigation transitions
+
+**Dynamic Styling with Styled Components:**
+
+- Conditional styling based on answer correctness and user selections
+- Color-coded feedback system (green for correct, red for incorrect)
+- Responsive icon displays and opacity changes for visual hierarchy
+
 **Key Code Patterns:**
 
 ```tsx
@@ -105,20 +119,45 @@ Building this quiz app was an excellent opportunity to practice React fundamenta
 const [currentState, setCurrentState] = useState<QuizState>("menu");
 const [selectedQuiz, setSelectedQuiz] = useState<Quiz | null>(null);
 const [userAnswers, setUserAnswers] = useState<string[]>([]);
+const [showFeedback, setShowFeedback] = useState<boolean>(false);
 
 // Conditional rendering based on app state
 {
   currentState === "menu" && <QuizMenu />;
 }
 {
-  currentState === "question" && <QuestionScreen />;
+  currentState === "question" && <QuestionScreen showFeedback={showFeedback} />;
 }
 {
   currentState === "result" && <ResultsScreen />;
 }
+
+// Dynamic styling with conditional props
+<OptionButton
+  $isSelected={isSelected}
+  $isCorrect={isCorrect}
+  $showFeedback={showFeedback}
+>
+  {showFeedback && (isSelected || isCorrect) && (
+    <FeedbackIcon $isCorrect={isCorrect}>
+      {isCorrect ? "✓" : "✗"}
+    </FeedbackIcon>
+  )}
+</OptionButton>
 ```
 
-This project reinforced the importance of planning component hierarchy and state flow before starting to code.
+This project reinforced the importance of planning component hierarchy and state flow before starting to code, and demonstrated how to create engaging user experiences with visual feedback systems.
+
+### Answer Feedback Feature
+
+A key enhancement added to this quiz app is the **instant visual answer feedback system**:
+
+- **Immediate Response**: Users see correct/incorrect indicators immediately after navigating to the next question
+- **Visual Learning**: Color-coded options (green for correct, red for incorrect) with checkmark/X icons
+- **Enhanced UX**: 1.5-second feedback display before auto-advancing to maintain engagement
+- **Accessibility**: Clear visual indicators that work alongside existing keyboard navigation
+
+This feature transforms the quiz from a basic test into an **interactive learning experience**, allowing users to understand their mistakes and learn from them immediately.
 
 ### Continued development
 
