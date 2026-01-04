@@ -51,7 +51,6 @@ This is a fully functional quiz application built with React 19, TypeScript, and
 
 ![](./preview.jpg)
 
-Screenshot of the quiz app showing the main menu with quiz topic selection and instant answer feedback functionality.
 
 ### Links
 
